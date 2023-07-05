@@ -1,27 +1,60 @@
+import { Display, TDisplay } from "./display";
+
 class AudioPlayer {
   audioPlayer: HTMLAudioElement;
+  display;
   constructor() {
-    this.audioPlayer = new Audio();
+    this.audioPlayer = document.querySelector("[js-audio-player]");
+    this.display = new Display();
+    this.initalizeListerners();
   }
-  initalize() {
-    this.audioPlayer = document.querySelector("[audio-player]");
-  }
-  play() {
-    this.audioPlayer.play();
+  initalizeListerners() {
+    // window.addEventListener('mousedown', function(event) {
+
+    //   if(!isDraggable(event.target)) return false;
+
+    //   currentlyDragged = event.target;
+    //   let handleMethod = currentlyDragged.dataset.method;
+
+    //   this.addEventListener('mousemove', window[handleMethod], false);
+
+    //   window.addEventListener('mouseup', () => {
+    //     currentlyDragged = false;
+    //     window.removeEventListener('mousemove', window[handleMethod], false);
+    //   }, false);
+    // });
+
+    this.audioPlayer.addEventListener("timeupdate", () => {
+      this.display.updateProgress(
+        this.audioPlayer.currentTime,
+        this.audioPlayer.duration
+      );
+    });
+    this.audioPlayer.addEventListener("loadedmetadata", () => {
+      this.display.loadDisplay(this.audioPlayer.duration);
+    });
+    this.audioPlayer.addEventListener("loadeddata", () => {
+      this.audioPlayer.play();
+    });
+    this.audioPlayer.addEventListener("ended", () => {
+      this.audioPlayer.currentTime = 0;
+    });
+
+    // window.addEventListener('resize', directionAware);
   }
   pause() {
     if (!this.audioPlayer.paused) {
       this.audioPlayer.pause();
     }
   }
-  playTrack(audioFile: string) {
+  loadNewTrack(audioFile: string) {
     this.pause();
     if (audioFile !== this.audioPlayer.currentSrc) {
       this.audioPlayer.src = audioFile;
-      this.play();
+      this.audioPlayer.load();
     } else {
       this.audioPlayer.currentTime = 0;
-      this.play();
+      this.audioPlayer.play();
     }
   }
   get duration() {

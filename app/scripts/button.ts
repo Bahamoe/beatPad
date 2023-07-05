@@ -6,7 +6,7 @@ export class Button {
   parent: any;
   constructor(filePath) {
     this.audio = filePath;
-    this.parent = document.querySelector("[pads-row]");
+    this.parent = document.querySelector("[js-pads-row]");
     this.createElement();
     this.initListerners();
   }
@@ -21,7 +21,7 @@ export class Button {
   }
   initListerners() {
     this.element.addEventListener("click", () => {
-      audioPlayer.playTrack(this.audio);
+      audioPlayer.loadNewTrack(this.audio);
     });
   }
 }

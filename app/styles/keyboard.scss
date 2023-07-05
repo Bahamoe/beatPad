@@ -4,7 +4,8 @@
   padding: 1rem;
   border-radius: 6px;
   &__left {
-    width: 500px;
+    // width: 500px;
+    width: 340px;
     display: flex;
     flex-direction: column;
   }
@@ -20,6 +21,60 @@
     background-color: #000;
     margin-bottom: 25px;
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .slider {
+      flex-grow: 1;
+      background-color: #d8d8d8;
+      cursor: pointer;
+      position: relative;
+      .progress {
+        background-color: #0bd1de;
+        border-radius: inherit;
+        position: absolute;
+        pointer-events: none;
+        .pin {
+          height: 16px;
+          width: 4px;
+          border-radius: 8px;
+          background-color: #0bd1de;
+          position: absolute;
+          pointer-events: all;
+          box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.32);
+        }
+      }
+    }
+    .controls {
+      font-family: "Roboto", sans-serif;
+      font-size: 16px;
+      line-height: 18px;
+      color: #0bd1de;
+      display: flex;
+      flex-grow: 1;
+      justify-content: space-between;
+      align-items: center;
+      margin-left: 24px;
+      margin-right: 24px;
+      .slider {
+        margin-left: 16px;
+        margin-right: 16px;
+        border-radius: 2px;
+        height: 4px;
+        background-color: #0bd1de;
+        .progress {
+          width: 0;
+          height: 100%;
+          .pin {
+            right: -2px;
+            top: -6px;
+          }
+        }
+      }
+      span {
+        cursor: default;
+      }
+    }
   }
   &__pads {
     padding: 2px;
