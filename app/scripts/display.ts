@@ -13,9 +13,10 @@ export class Display {
     this.totalTimeEl = document.querySelector("[js-total-time]");
     this.currentlyDragged = false;
   }
-  updateProgress(currentTime: number) {
+  updateProgress(currentTime: number, duration: number) {
+    console.log(duration);
     var current = currentTime;
-    var percent = (current / this.duration) * 100;
+    var percent = (current / duration) * 100;
     this.progressEl.style.width = percent + "%";
 
     this.currentTimeEl.textContent = this.formatTime(current);
