@@ -1,0 +1,34 @@
+.keyboard {
+  display: flex;
+  background-color: #f1f3f6;
+  padding: 1rem;
+  border-radius: 6px;
+  &__left {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+  }
+  &__right {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: 250px;
+  }
+  &__screen {
+    width: 100%;
+    height: 50px;
+    background-color: #000;
+    margin-bottom: 25px;
+    border-radius: 5px;
+  }
+  &__pads {
+    padding: 2px;
+    background-color: #000;
+    border-radius: 5px;
+    &__row {
+      display: flex;
+      justify-content: flex-start;
+      padding: 2px;
+    }
+  }
+}
