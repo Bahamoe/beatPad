@@ -1,6 +1,6 @@
 import { Button } from "./button";
 import { audioFiles } from "./audio";
 
-audioFiles.forEach((file) => {
-  new Button(file);
+audioFiles.forEach((audio) => {
+  new Button(audio.file, audio.keyCode);
 });

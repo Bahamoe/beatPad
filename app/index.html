@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Beat Pad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./styles/index.scss" />
   </head>
   <body>
@@ -11,24 +17,20 @@
     <div class="container">
       <div class="keyboard">
         <div class="keyboard__left">
-          <div class="keyboard__screen">
-            <div class="controls" js-controls>
-              <span class="current-time" js-current-time>0:00</span>
-              <div class="slider" data-direction="horizontal" js-slider>
-                <div class="progress" js-progress>
-                  <div class="pin" id="progress-pin" data-method="rewind"></div>
-                </div>
-              </div>
-              <span class="total-time" js-total-time>0:00</span>
-            </div>
-          </div>
+          <div class="display" js-display></div>
           <div class="keyboard__pads">
             <div class="keyboard__pads__row" js-pads-row></div>
           </div>
         </div>
-        <!-- <div class="keyboard__right">
-          <div class="keyboard__controls"></div>
-        </div> -->
+        <div class="keyboard__right">
+          <div class="keyboard__controls">
+            <button class="btn">
+              <div class="btn__inner">
+                <span class="text text--glow">LOOP</span>
+              </div>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
     <script src="./scripts/index.ts" type="module"></script>

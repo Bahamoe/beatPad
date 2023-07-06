@@ -1,0 +1,75 @@
+.display {
+  width: 100%;
+  min-height: 50px;
+  background-color: #000;
+  margin-bottom: 16px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 16px 0;
+  &__timeline {
+    font-size: 16px;
+    line-height: 18px;
+    color: #0bd1de;
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 24px;
+    margin-right: 24px;
+    .slider {
+      flex-grow: 1;
+      background-color: #d8d8d8;
+      cursor: pointer;
+      position: relative;
+      margin-left: 16px;
+      margin-right: 16px;
+      border-radius: 2px;
+      height: 4px;
+      background-color: #0bd1de;
+      .progress {
+        background-color: #0bd1de;
+        border-radius: inherit;
+        position: absolute;
+        pointer-events: none;
+        width: 0;
+        height: 100%;
+        .pin {
+          height: 16px;
+          width: 4px;
+          border-radius: 8px;
+          background-color: #0bd1de;
+          position: absolute;
+          pointer-events: all;
+          box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.32);
+          right: -2px;
+          top: -6px;
+        }
+      }
+      span {
+        cursor: default;
+      }
+    }
+  }
+  &__modes {
+    width: 100%;
+    margin: 16px 24px 0 24px;
+    &__item {
+      background-color: #2e2d2d;
+      border-radius: 2px;
+      border: 2px solid #0bd1de;
+      height: 24px;
+      width: 24px;
+      path {
+        fill: #0bd1de;
+      }
+      &--active {
+        background-color: #0bd1de;
+        path {
+          fill: #2e2d2d;
+        }
+      }
+    }
+  }
+}

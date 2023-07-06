@@ -1,34 +1,79 @@
-export class Display {
-  controlsEl: HTMLDivElement;
-  progressEl: HTMLDivElement;
-  sliderEl: HTMLDivElement;
-  currentTimeEl: HTMLSpanElement;
-  totalTimeEl: HTMLSpanElement;
+import { createElement } from "../helpers";
+
+export class Timeline {
+  rootElement: HTMLElement;
+  progressElement: HTMLElement;
+  sliderElement: HTMLElement;
+  pinElement: HTMLElement;
+  currentTimeElement: HTMLSpanElement;
+  totalTimeElement: HTMLSpanElement;
   currentlyDragged: boolean;
   constructor() {
-    this.controlsEl = document.querySelector("[js-controls]");
-    this.progressEl = document.querySelector("[js-progress]");
-    this.sliderEl = document.querySelectorAll("[js-slider]");
-    this.currentTimeEl = document.querySelector("[js-current-time]");
-    this.totalTimeEl = document.querySelector("[js-total-time]");
     this.currentlyDragged = false;
+    this.initalizeDOMNodes();
   }
   updateProgress(currentTime: number, duration: number) {
-    console.log(duration);
     var current = currentTime;
     var percent = (current / duration) * 100;
-    this.progressEl.style.width = percent + "%";
+    this.progressElement.style.width = percent + "%";
 
-    this.currentTimeEl.textContent = this.formatTime(current);
+    this.currentTimeElement.textContent = this.formatTime(current);
   }
   formatTime(time: number) {
     var min = Math.floor(time / 60);
     var sec = Math.floor(time % 60);
     return min + ":" + (sec < 10 ? "0" + sec : sec);
   }
-  loadDisplay(duration: number) {
-    this.totalTimeEl.textContent = this.formatTime(duration);
+  loadNew(duration: number) {
+    this.totalTimeElement.textContent = this.formatTime(duration);
   }
+  /**
+   * Creates all the dom elements for the audio info on the screen
+   */
+  initalizeDOMNodes() {
+    this.pinElement = createElement({
+      elementType: "div",
+      classNames: ["pin"],
+      attributes: { "data-method": "rewind", id: "progress-pin" },
+    });
+    this.progressElement = createElement({
+      elementType: "div",
+      classNames: ["progress"],
+      attributes: { "js-progress": "" },
+      children: [this.pinElement],
+    });
+    this.sliderElement = createElement({
+      elementType: "div",
+      classNames: ["slider"],
+      attributes: { "data-direction": "horizontal", "js-slider": "" },
+      children: [this.progressElement],
+    });
+
+    this.currentTimeElement = createElement({
+      elementType: "span",
+      classNames: ["current-time", "text", "text--glow"],
+      attributes: { "js-current-time": "" },
+      text: "0:00",
+    });
+    this.totalTimeElement = createElement({
+      elementType: "span",
+      classNames: ["total-time", "text", "text--glow"],
+      attributes: { "js-total-time": "" },
+      text: "0:00",
+    });
+
+    this.rootElement = createElement({
+      elementType: "div",
+      classNames: ["display__timeline"],
+      attributes: { "js-timeline": "" },
+      children: [
+        this.currentTimeElement,
+        this.sliderElement,
+        this.totalTimeElement,
+      ],
+    });
+  }
+
   // getRangeBox(event) {
   //   let rangeBox = event.target;
   //   let el = this.currentlyDragged;
@@ -89,5 +134,3 @@ export class Display {
   //   }
   // }
 }
-
-export type TDisplay = typeof Display;

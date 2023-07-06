@@ -1,27 +1,33 @@
 import { audioPlayer } from "./audioPlayer";
+import { createButton } from "./helpers";
+import { keyCodeLetter } from "./keyCodes";
 
 export class Button {
   audio: any;
   element: any;
   parent: any;
-  constructor(filePath) {
-    this.audio = filePath;
+  keyCode: string;
+  constructor(audioFile, keyCode: string) {
+    this.audio = audioFile;
+    this.keyCode = keyCode;
     this.parent = document.querySelector("[js-pads-row]");
     this.createElement();
     this.initListerners();
   }
   createElement() {
-    const element = document.createElement("button");
-    const elementInner = document.createElement("div");
-    element.classList.add("beat-button");
-    elementInner.classList.add("beat-button__inner");
-    element.append(elementInner);
-    this.element = element;
-    this.parent.append(element);
+    const button = createButton(keyCodeLetter[this.keyCode]);
+    this.element = button;
+    this.parent.append(button);
   }
   initListerners() {
     this.element.addEventListener("click", () => {
       audioPlayer.loadNewTrack(this.audio);
+      this.element.blur();
+    });
+    window.addEventListener("keydown", (event) => {
+      if (event.code === this.keyCode) {
+        audioPlayer.loadNewTrack(this.audio);
+      }
     });
   }
 }

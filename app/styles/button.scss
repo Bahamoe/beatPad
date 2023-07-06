@@ -1,4 +1,4 @@
-.beat-button {
+.btn {
   border: none;
   position: relative;
   width: var(--button-dimensions);
@@ -17,6 +17,9 @@
     margin-right: 0px;
   }
   &__inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
     width: calc(var(--button-dimensions) * 0.8);
     height: calc(var(--button-dimensions) * 0.8);
@@ -42,5 +45,15 @@
         0px 0px 4px rgba(255, 255, 255, 0.2);
       /* border-radius: 50px; */
     }
+  }
+}
+
+.text {
+  color: #b6f7fc;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  text-transform: capitalize;
+  &--glow {
+    text-shadow: 0 0 4px #0bd1de;
   }
 }

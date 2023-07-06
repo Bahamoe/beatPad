@@ -13,4 +13,9 @@ export const getDurationStep = (key: string, duration: number) => {
   return duration * step;
 };
 
-26.749708;
+export const keyCodeLetter = {
+  KeyA: "A",
+  KeyS: "S",
+  KeyD: "D",
+  KeyF: "F",
+};

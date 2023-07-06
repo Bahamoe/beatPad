@@ -1,4 +1,4 @@
-import { Display, TDisplay } from "./display";
+import { Display } from "./display";
 import { KEY_CODES, getDurationStep, isDigit } from "./keyCodes";
 
 class AudioPlayer {
@@ -33,13 +33,13 @@ class AudioPlayer {
     });
 
     this.audioPlayer.addEventListener("timeupdate", () => {
-      this.display.updateProgress(
+      this.display.timeline.updateProgress(
         this.audioPlayer.currentTime,
         this.audioPlayer.duration
       );
     });
     this.audioPlayer.addEventListener("loadedmetadata", () => {
-      this.display.loadDisplay(this.audioPlayer.duration);
+      this.display.timeline.loadNew(this.audioPlayer.duration);
     });
     this.audioPlayer.addEventListener("loadeddata", () => {
       this.audioPlayer.play();
@@ -85,7 +85,6 @@ class AudioPlayer {
   }
   backwardsJump() {
     const newCurrentTime = this.audioPlayer.currentTime - this.step;
-    console.log({ newCurrentTime });
     if (newCurrentTime < 0) {
       this.audioPlayer.currentTime = 0;
     } else {
@@ -98,6 +97,7 @@ class AudioPlayer {
         key,
         this.audioPlayer.duration
       );
+      this.audioPlayer.play();
     } else {
       switch (code) {
         case KEY_CODES.SPACE:
